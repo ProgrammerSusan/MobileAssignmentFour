@@ -5,11 +5,8 @@ import android.view.*;
 import android.widget.*;
 import android.graphics.*;
 import android.content.Context;
-import android.util.TypedValue;
 
 import androidx.annotation.RequiresApi;
-
-import static android.graphics.Color.*;
 
 class AppInterface extends GridLayout{
     private TextView[][] board;
@@ -120,16 +117,6 @@ class AppInterface extends GridLayout{
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board.length; j++){
                 board[i][j].setText(String.valueOf(game[i][j]));
-            }
-        }
-    }
-
-    public void drawGoal(char[][] game)
-    {
-        //draw goal board
-        for(int i = 0; i < goal.length; i++){
-            for(int j = 0; j < goal.length; j++){
-                goal[i][j].setText(String.valueOf(game[i][j]));
             }
         }
     }
