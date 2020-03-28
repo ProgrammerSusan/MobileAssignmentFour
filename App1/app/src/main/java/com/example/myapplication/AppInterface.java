@@ -15,7 +15,7 @@ class AppInterface extends GridLayout{
     private Button up, down, right, left;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public AppInterface(Context context, View.OnClickListener buttonHandler)
+    public AppInterface(Context context, GestureDetector gesture)
     {
         super(context);
 
@@ -47,68 +47,6 @@ class AppInterface extends GridLayout{
 
             }
         }
-
-        //create second board in a grid
-        goal = new TextView[size][size];
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < size; j++){
-                goal[i][j] = new TextView(context);
-                goal[i][j].setTextSize(15);
-                goal[i][j].setBackgroundColor(Color.parseColor("#AEC4C0"));
-                goal[i][j].setGravity(Gravity.CENTER);
-                GridLayout.LayoutParams parameters = new GridLayout.LayoutParams();
-                parameters.rowSpec = GridLayout.spec(i + 4,1);
-                parameters.columnSpec = GridLayout.spec(j + 4, 1);
-                parameters.width = width;
-                parameters.height = width;
-                parameters.topMargin = parameters.bottomMargin = 1;
-                parameters.leftMargin = parameters.rightMargin = 1;
-                goal[i][j].setLayoutParams(parameters);
-                addView(goal[i][j]);
-
-            }
-        }
-        //create four buttons, attach event handler
-        GridLayout.LayoutParams upP = new GridLayout.LayoutParams();
-        upP.rowSpec = GridLayout.spec(7,1);
-        upP.columnSpec = GridLayout.spec(8,1);
-        up = new Button(context);
-        up.setId(Button.generateViewId());
-        up.setOnClickListener(buttonHandler);
-        up.setGravity(Gravity.CENTER);
-        up.setLayoutParams(upP);
-        up.setText("UP");
-        GridLayout.LayoutParams downP = new GridLayout.LayoutParams();
-        downP.rowSpec = GridLayout.spec(7,1);
-        downP.columnSpec = GridLayout.spec(3,1);
-        down = new Button(context);
-        down.setId(Button.generateViewId());
-        down.setOnClickListener(buttonHandler);
-        down.setGravity(Gravity.CENTER);
-        down.setLayoutParams(downP);
-        down.setText("DOWN");
-        GridLayout.LayoutParams leftP = new GridLayout.LayoutParams();
-        leftP.rowSpec = GridLayout.spec(8,1);
-        leftP.columnSpec = GridLayout.spec(3,1);
-        left = new Button(context);
-        left.setId(Button.generateViewId());
-        left.setOnClickListener(buttonHandler);
-        left.setGravity(Gravity.CENTER);
-        left.setLayoutParams(leftP);
-        left.setText("LEFT");
-        GridLayout.LayoutParams rightP = new GridLayout.LayoutParams();
-        rightP.rowSpec = GridLayout.spec(8, 1);
-        rightP.columnSpec = GridLayout.spec(8,1);
-        right = new Button(context);
-        right.setId(Button.generateViewId());
-        right.setOnClickListener(buttonHandler);
-        right.setGravity(Gravity.CENTER);
-        right.setLayoutParams(rightP);
-        right.setText("RIGHT");
-        addView(up);
-        addView(down);
-        addView(left);
-        addView(right);
     }
 
     public void drawBoard(char[][] game)
