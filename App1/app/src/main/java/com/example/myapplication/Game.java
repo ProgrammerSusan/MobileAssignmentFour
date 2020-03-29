@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.util.Log;
+
 class Game {
     private char[][] board;
     private char[][] goal;
@@ -26,21 +28,19 @@ class Game {
     }
     public void exchange(int i, int j, int m, int n)
     {
-        //ensure array not out of bounds
-        if(i < 3 && j < 3 && m < 3 && n < 3){
-            if(exchangeValidation(i, j, m, n)){
-                char temp = board[i][j];
-                board[i][j] = board[m][n];
-                board[m][n] = temp;
+        try{
+            if(board[i][j] == ' ' || board[m][n] == ' '){
+                //checks if moving to an adjacent spot avoiding diagonals
+                if((Math.abs(i - m) == 1 && j == n) || (Math.abs(j - n) == 1 && i == m)){
+                    char temp = board[i][j];
+                    board[i][j] = board[m][n];
+                    board[m][n] = temp;
+                }
             }
         }
-    }
-
-    private boolean exchangeValidation(int i, int j, int m, int n){
-        //checks that if one of the spaces are blank
-        //checks if spaces are adjacent and prohibits diagonal
-        //extracted into separate method for readability
-        return (board[i][j] == ' ' || board[m][n] == ' ') && (Math.abs(i - m) == 1 && j == n) || (Math.abs(j - n) == 1 && i == m);
+        catch (ArrayIndexOutOfBoundsException e){
+            int x = 1;  //placeholder code
+        }
     }
 
     public boolean solved(){
