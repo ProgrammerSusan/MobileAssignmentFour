@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             game.exchange(startIndex, endIndex);
             appInterface.drawBoard(game.getBoard());
-            
+
             return true;
         }
 

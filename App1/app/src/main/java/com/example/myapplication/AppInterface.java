@@ -18,7 +18,7 @@ class AppInterface extends GridLayout{
         super(context);
 
         this.size = 3;
-        this.width = 60;
+        this.width = 120;
 
         final int dp = (int)(getResources().getDisplayMetrics().density);
         width = width * dp;
@@ -30,7 +30,7 @@ class AppInterface extends GridLayout{
         for(int i = 0; i < size; i++){
             for(int j = 0; j < size; j++){
                 board[i][j] = new TextView(context);
-                board[i][j].setTextSize(15);
+                board[i][j].setTextSize(30);
                 board[i][j].setBackgroundColor(Color.parseColor("#AEC4C0"));
                 board[i][j].setGravity(Gravity.CENTER);
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
