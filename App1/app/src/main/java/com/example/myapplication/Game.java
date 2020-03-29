@@ -34,48 +34,10 @@ class Game {
         //return goal board
         return goal;
     }
-
-    public void up()
+    public void exchange(int i, int j)
     {
-        //move blank up
-        if(x != 0){
-            char temp = board[x - 1][y];
-            board[x - 1][y] = ' ';
-            board[x][y] = temp;
-            x--;
-        }
-    }
-
-    public void down()
-    {
-        //move blank down
-        if(x != 2){
-            char temp = board[x + 1][y];
-            board[x + 1][y] = ' ';
-            board[x][y] = temp;
-            x++;
-        }
-    }
-
-    public void right()
-    {
-        //move blank right
-        if(y != 2){
-            char temp = board[x][y + 1];
-            board[x][y + 1] = ' ';
-            board[x][y] = temp;
-            y++;
-        }
-    }
-
-    public void left()
-    {
-        //move blank left
-        if(y != 0){
-            char temp = board[x][y - 1];
-            board[x][y - 1] = ' ';
-            board[x][y] = temp;
-            y--;
-        }
+        char temp = board[i][j];
+        board[i][j] = board[j][i];
+        board[j][i]= temp;
     }
 }

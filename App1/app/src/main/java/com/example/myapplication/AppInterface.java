@@ -10,12 +10,10 @@ import androidx.annotation.RequiresApi;
 
 class AppInterface extends GridLayout{
     private TextView[][] board;
-    private TextView[][] goal;
     private int size, width;
-    private Button up, down, right, left;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public AppInterface(Context context, GestureDetector gesture)
+    public AppInterface(Context context)
     {
         super(context);
 
@@ -57,17 +55,5 @@ class AppInterface extends GridLayout{
                 board[i][j].setText(String.valueOf(game[i][j]));
             }
         }
-    }
-
-    public int findButton(Button button)
-    {
-        if (button == up)
-            return 1;
-        else if (button == down)
-            return 2;
-        else if (button == right)
-            return 3;
-        else
-            return 4;
     }
 }
