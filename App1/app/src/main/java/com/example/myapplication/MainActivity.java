@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         //create game
         game = new Game();
         //create interface
-        appInterface = new AppInterface(this);
+        appInterface = new AppInterface(this, screenHeight(), screenWidth());
         //draw initial and goal board
         appInterface.drawBoard(game.getBoard());
         setContentView(appInterface);
@@ -44,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
         int DP = (int)(getResources().getDisplayMetrics().density);
 
         return size.y - 80*DP;
+    }
+
+    private int screenWidth()
+    {
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+
+        return size.x;
     }
 
     private class TouchHandler extends GestureDetector.SimpleOnGestureListener

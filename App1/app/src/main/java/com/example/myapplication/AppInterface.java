@@ -8,22 +8,16 @@ import android.content.Context;
 
 import androidx.annotation.RequiresApi;
 
-class AppInterface extends GridLayout{
+class AppInterface extends RelativeLayout{
     private TextView[][] board;
     private int size, width;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public AppInterface(Context context)
+    public AppInterface(Context context, int screenHeight, int screenWidth)
     {
         super(context);
 
         this.size = 3;
-        this.width = 120;
-
-        final int dp = (int)(getResources().getDisplayMetrics().density);
-        width = width * dp;
-        setRowCount(9);
-        setColumnCount(9);
 
         //create first board in a grid
         board = new TextView[size][size];
@@ -31,15 +25,21 @@ class AppInterface extends GridLayout{
             for(int j = 0; j < size; j++){
                 board[i][j] = new TextView(context);
                 board[i][j].setTextSize(30);
+                board[i][j].setId(TextView.generateViewId());
                 board[i][j].setBackgroundColor(Color.parseColor("#AEC4C0"));
                 board[i][j].setGravity(Gravity.CENTER);
-                GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-                params.width = width;
-                params.height = width;
-                params.rowSpec = GridLayout.spec(i,1);
-                params.columnSpec = GridLayout.spec(j + 4, 1);
-                params.topMargin = params.bottomMargin = 1;
-                params.leftMargin = params.rightMargin = 1;
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(0, 0);
+                params.width = screenWidth/size;
+                params.height = screenHeight/size;
+                params.topMargin = 1;
+                params.rightMargin = 1;
+                if (i > 0){
+                    params.addRule(RelativeLayout.BELOW, board[i-1][j].getId());
+                }
+                if(j > 0){
+                    params.addRule(RelativeLayout.RIGHT_OF, board[i][j-1].getId());
+                }
+
                 board[i][j].setLayoutParams(params);
                 addView(board[i][j]);
 
