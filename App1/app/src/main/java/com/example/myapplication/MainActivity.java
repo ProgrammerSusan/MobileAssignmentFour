@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.*;
-import android.widget.*;
 import android.view.MotionEvent;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private AppInterface appInterface;
     private GestureDetector swipe;
     private final int SIZE = 3;
+    private boolean solved;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -28,11 +28,15 @@ public class MainActivity extends AppCompatActivity {
         appInterface = new AppInterface(this, screenHeight(), screenWidth());
         //draw initial and goal board
         appInterface.drawBoard(game.getBoard());
+        solved = false;
         setContentView(appInterface);
     }
 
     public boolean onTouchEvent(MotionEvent event){
-        swipe.onTouchEvent(event);
+        if(!solved){
+            swipe.onTouchEvent(event);
+        }
+
         return true;
     }
 
@@ -65,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
             game.exchange(startRow, startCol, endRow, endCol);
             appInterface.drawBoard(game.getBoard());
+            solved = game.solved();
+            if(solved){
+                appInterface.solvedBoard();
+            }
 
             return true;
         }
