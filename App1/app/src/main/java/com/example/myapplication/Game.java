@@ -34,10 +34,14 @@ class Game {
         //return goal board
         return goal;
     }
-    public void exchange(int i, int j)
+    public void exchange(int i, int j, int m, int n)
     {
-        char temp = board[i][j];
-        board[i][j] = board[j][i];
-        board[j][i]= temp;
+        if(board[i][j] == ' ' || board[m][n] == ' '){
+            if(Math.abs(i - m) <= 1 && Math.abs(j - n) <= 1){
+                char temp = board[i][j];
+                board[i][j] = board[m][n];
+                board[m][n] = temp;
+            }
+        }
     }
 }

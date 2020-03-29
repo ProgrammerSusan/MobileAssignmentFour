@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Game game;
     private AppInterface appInterface;
     private GestureDetector swipe;
-    private final int SIZE = 10;
+    private final int SIZE = 3;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -58,11 +58,12 @@ public class MainActivity extends AppCompatActivity {
     {
         public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY)
         {
-            int startIndex = getY(event1)/(screenHeight()/SIZE);
+            int startRow = getY(event1)/(screenHeight()/SIZE);
+            int startCol = getX(event1)/(screenHeight()/SIZE);
+            int endRow = getY(event2)/(screenHeight()/SIZE);
+            int endCol = getX(event2)/(screenHeight()/SIZE);
 
-            int endIndex = getY(event2)/(screenHeight()/SIZE);
-
-            game.exchange(startIndex, endIndex);
+            game.exchange(startRow, startCol, endRow, endCol);
             appInterface.drawBoard(game.getBoard());
 
             return true;
@@ -73,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
             int DP = (int)(getResources().getDisplayMetrics().density);
 
             return (int)(event.getY() - 80*DP);
+        }
+
+        private int getX(MotionEvent event)
+        {
+            return (int)(event.getX());
         }
     }
 }
