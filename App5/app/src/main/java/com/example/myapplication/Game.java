@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import java.util.Random;
+
 public class Game
 {
     private double birdX;
@@ -108,19 +110,20 @@ public class Game
 
     private void initializeGame()
     {
+        Random r = new Random();
+
         double sceneWidth = 1800;
         double sceneHeight = 1000;
-        double gunLength = 200;
-        double gunAngle = 45 + 30 * Math.random();
+        double gunAngle = 0;
 
         this.birdX = sceneWidth - 50;
         this.birdY = sceneHeight - 50 - 400 * Math.random();
         this.birdSpeed = 10 + 10 * Math.random();
 
-        this.gunX = gunLength*Math.cos(gunAngle*Math.PI/180);
-        this.gunY = gunLength*Math.sin(gunAngle*Math.PI/180);
+        this.gunX = 0;
+        this.gunY = r.nextInt(450) + 250;
 
-        this.bulletX = gunX;
+        this.bulletX = gunX + 200;
         this.bulletY = gunY;
         this.bulletSpeed = 20;
         this.bulletAngle = gunAngle;
