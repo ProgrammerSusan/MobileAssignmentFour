@@ -51,4 +51,3 @@ public class GameView extends View
         canvas.drawLine(0, (float)sceneHeight, (float)gunX, (float)(sceneHeight - gunY), paint);
     }
 }
-
