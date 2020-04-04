@@ -82,7 +82,7 @@ public class Game
     {
         if (!hit)
         {
-            birdX = birdX - birdSpeed;
+            birdY = birdY - birdSpeed;
             hit = decideHit();
         }
         else
@@ -105,7 +105,7 @@ public class Game
 
     private boolean sceneClear()
     {
-        return (birdX < 0 || birdY < 0) && bulletY > 1000;
+        return (birdX < 0 || birdY < 0) && bulletX > 1800;
     }
 
     private void initializeGame()
@@ -116,8 +116,8 @@ public class Game
         double sceneHeight = 1000;
         double gunAngle = 0;
 
-        this.birdX = sceneWidth - 50;
-        this.birdY = sceneHeight - 50 - 400 * Math.random();
+        this.birdX = sceneWidth - 50 - 400 * Math.random();
+        this.birdY = sceneHeight;
         this.birdSpeed = 10 + 10 * Math.random();
 
         this.gunX = 0;
@@ -125,7 +125,7 @@ public class Game
 
         this.bulletX = gunX + 200;
         this.bulletY = gunY;
-        this.bulletSpeed = 20;
+        this.bulletSpeed = 50;
         this.bulletAngle = gunAngle;
 
         this.radius = 50;
