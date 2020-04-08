@@ -104,8 +104,7 @@ public class Game {
         this.birdSpeed = 10 + 10 * Math.random();
 
         this.gunX = gunLength;
-        this.gunY = Math.random() * 450;
-
+        this.gunY = sceneHeight - 400 - Math.random() * 250;
         this.bulletX = gunX;
         this.bulletY = gunY;
         this.bulletSpeed = 40;
