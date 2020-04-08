@@ -45,7 +45,7 @@ public class MainActivity extends Activity
 
     private class TouchHandler extends GestureDetector.SimpleOnGestureListener
     {
-        public boolean onSingleTapConfirmed(MotionEvent event)
+        public boolean onDoubleTapEvent(MotionEvent event)
         {
             game.fire();
 
