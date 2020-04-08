@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.media.SoundPool;
 import android.os.Bundle;
 import java.util.Timer;
 import android.app.Activity;
@@ -16,9 +17,14 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
 
-        game = new Game();
+        SoundPool.Builder soundPoolBuilder = new SoundPool.Builder();
+        SoundPool soundPool = soundPoolBuilder.build();
+        int soundId = soundPool.load(this, R.raw.explosion, 1);
+
+        game = new Game(soundPool, soundId);
 
         gameView = new GameView(this, game);
+
         setContentView(gameView);
 
         Timer timer = new Timer();

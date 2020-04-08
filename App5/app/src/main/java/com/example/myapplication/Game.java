@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.media.SoundPool;
+
 public class Game {
     private double birdX;
     private double birdY;
@@ -19,8 +21,14 @@ public class Game {
     private boolean fired;
     private boolean hit;
 
-    public Game() {
+    private SoundPool soundPool;
+    private int soundId;
+
+    public Game(SoundPool soundPool, int soundId) {
         initializeGame();
+
+        this.soundPool = soundPool;
+        this.soundId = soundId;
     }
 
     public void update() {
@@ -70,6 +78,8 @@ public class Game {
         {
             birdY = birdY - birdSpeed;
             hit = decideHit();
+            if (hit)
+                soundPool.play(soundId, 1, 1, 1, 0, 1);
         }
         else{
             this.hit = decideHit();
