@@ -43,11 +43,11 @@ public class GameView extends View
 
         paint.setColor(Color.parseColor("#660000"));
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle((float)bulletX, (float)(bulletY), (float)radius, paint);
+        canvas.drawCircle((float)bulletX, (float)(sceneHeight - bulletY), (float)radius, paint);
 
         paint.setColor(Color.parseColor("#660000"));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(30);
-        canvas.drawLine((float)gunX, (float)gunY, (float)gunX + 200, (float)gunY, paint);
+        canvas.drawLine(0, (float)(sceneHeight - gunY), (float)gunX, (float)(sceneHeight - gunY), paint);
     }
 }

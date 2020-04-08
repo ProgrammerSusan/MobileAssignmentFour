@@ -1,9 +1,6 @@
 package com.example.myapplication;
 
-import java.util.Random;
-
-public class Game
-{
+public class Game {
     private double birdX;
     private double birdY;
     private double birdSpeed;
@@ -22,13 +19,11 @@ public class Game
     private boolean fired;
     private boolean hit;
 
-    public Game()
-    {
+    public Game() {
         initializeGame();
     }
 
-    public void update()
-    {
+    public void update() {
         moveBird();
 
         if (fired)
@@ -38,94 +33,82 @@ public class Game
             initializeGame();
     }
 
-    public void fire()
-    {
+    public void fire() {
         fired = true;
     }
 
-    public double getBirdX()
-    {
+    public double getBirdX() {
         return birdX;
     }
 
-    public double getBirdY()
-    {
+    public double getBirdY() {
         return birdY;
     }
 
-    public double getBulletX()
-    {
+    public double getBulletX() {
         return bulletX;
     }
 
-    public double getBulletY()
-    {
+    public double getBulletY() {
         return bulletY;
     }
 
-    public double getGunX()
-    {
+    public double getGunX() {
         return gunX;
     }
 
-    public double getGunY()
-    {
+    public double getGunY() {
         return gunY;
     }
 
-    public double getRadius()
-    {
+    public double getRadius() {
         return radius;
     }
 
-    private void moveBird()
-    {
+    private void moveBird() {
         if (!hit)
         {
             birdY = birdY - birdSpeed;
             hit = decideHit();
         }
-        else
-            birdY = birdY - birdSpeed;
+        else{
+            this.hit = decideHit();
+            birdY = -2000;
+        }
     }
 
-    private void moveBullet()
-    {
-        bulletX = bulletX + bulletSpeed*Math.cos(bulletAngle*Math.PI/180);
-        bulletY = bulletY + bulletSpeed*Math.sin(bulletAngle*Math.PI/180);
+    private void moveBullet() {
+        bulletX = bulletX + bulletSpeed * Math.cos(bulletAngle * Math.PI / 180);
+        bulletY = bulletY + bulletSpeed * Math.sin(bulletAngle * Math.PI / 180);
     }
 
-    private boolean decideHit()
-    {
-        double distance = Math.sqrt((birdX - bulletX)*(birdX - bulletX) +
-                (birdY - bulletY)*(birdY - bulletY));
+    private boolean decideHit() {
+        double distance = Math.sqrt((birdX - bulletX) * (birdX - bulletX) +
+                (birdY - bulletY) * (birdY - bulletY));
 
         return distance <= distanceThreshold;
     }
 
-    private boolean sceneClear()
-    {
-        return (birdX < 0 || birdY < 0) && bulletX > 1800;
+    private boolean sceneClear() {
+        return (hit ||(birdX < 0 || birdY < 0)) && bulletX > 1800;
     }
 
-    private void initializeGame()
-    {
-        Random r = new Random();
-
+    private void initializeGame() {
         double sceneWidth = 1800;
         double sceneHeight = 1000;
+        double gunLength = 200;
         double gunAngle = 0;
 
-        this.birdX = sceneWidth - 50 - 400 * Math.random();
+        this.birdX = sceneWidth - 600 - 400 * Math.random();
         this.birdY = sceneHeight;
         this.birdSpeed = 10 + 10 * Math.random();
 
-        this.gunX = 0;
-        this.gunY = r.nextInt(450) + 250;
+        this.gunX = gunLength;
+        this.gunY = Math.random() * 450;
 
-        this.bulletX = gunX + 200;
+        this.bulletX = gunX;
         this.bulletY = gunY;
-        this.bulletSpeed = 50;
+        this.bulletSpeed = 40;
         this.bulletAngle = gunAngle;
 
         this.radius = 50;
