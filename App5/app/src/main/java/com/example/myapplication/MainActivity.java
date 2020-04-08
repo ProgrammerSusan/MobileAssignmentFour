@@ -1,11 +1,12 @@
 package com.example.myapplication;
 
-import android.media.SoundPool;
+
 import android.os.Bundle;
 import java.util.Timer;
 import android.app.Activity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.media.SoundPool;
 
 public class MainActivity extends Activity
 {
